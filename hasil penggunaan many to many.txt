@@ -1,0 +1,124 @@
+app.get('/ships',(req,res)=>{
+		Shipping.findAll({
+			include:{
+			model:Item
+			}
+		})
+		.then(data=>{
+			res.send(data)
+		})
+		.catch(err=>{
+			res.send(err)
+		})
+	})
+[
+    {
+        "id": 5,
+        "destination": "Joni Hoki",
+        "estArrival": "1864-01-01T00:00:00.000Z",
+        "ShipperId": 1,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:36:01.917Z",
+        "updatedAt": "2023-09-27T14:36:01.917Z",
+        "Items": [
+            {
+                "id": 1,
+                "name": "Joni Hoki",
+                "price": 10000,
+                "description": "Barang User",
+                "createdAt": "2023-09-27T14:34:04.940Z",
+                "updatedAt": "2023-09-27T14:34:04.940Z",
+                "ShippedItems": {
+                    "createdAt": "2023-09-27T14:37:05.455Z",
+                    "updatedAt": "2023-09-27T14:37:05.455Z",
+                    "ItemId": 1,
+                    "ShippingId": 5
+                }
+            },
+            {
+                "id": 2,
+                "name": "AK47",
+                "price": 10000,
+                "description": "Senjata Rusia",
+                "createdAt": "2023-09-27T14:34:04.940Z",
+                "updatedAt": "2023-09-27T14:34:04.940Z",
+                "ShippedItems": {
+                    "createdAt": "2023-09-27T14:37:05.455Z",
+                    "updatedAt": "2023-09-27T14:37:05.455Z",
+                    "ItemId": 2,
+                    "ShippingId": 5
+                }
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "destination": "Joni Hoki",
+        "estArrival": "1866-01-01T00:00:00.000Z",
+        "ShipperId": 2,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:37:05.443Z",
+        "updatedAt": "2023-09-27T14:37:05.443Z",
+        "Items": []
+    },
+    {
+        "id": 12,
+        "destination": "Rumah Hantu Hoki",
+        "estArrival": "1866-01-01T00:00:00.000Z",
+        "ShipperId": 2,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:37:05.443Z",
+        "updatedAt": "2023-09-27T14:37:05.443Z",
+        "Items": []
+    },
+    {
+        "id": 10,
+        "destination": "Rumah Hantu Hoki",
+        "estArrival": "1864-01-01T00:00:00.000Z",
+        "ShipperId": 1,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:37:05.443Z",
+        "updatedAt": "2023-09-27T14:37:05.443Z",
+        "Items": []
+    },
+    {
+        "id": 8,
+        "destination": "Rumah Hantu Hoki",
+        "estArrival": "1866-01-01T00:00:00.000Z",
+        "ShipperId": 2,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:36:01.917Z",
+        "updatedAt": "2023-09-27T14:36:01.917Z",
+        "Items": []
+    },
+    {
+        "id": 6,
+        "destination": "Rumah Hantu Hoki",
+        "estArrival": "1864-01-01T00:00:00.000Z",
+        "ShipperId": 1,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:36:01.917Z",
+        "updatedAt": "2023-09-27T14:36:01.917Z",
+        "Items": []
+    },
+    {
+        "id": 9,
+        "destination": "Joni Hoki",
+        "estArrival": "1864-01-01T00:00:00.000Z",
+        "ShipperId": 1,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:37:05.443Z",
+        "updatedAt": "2023-09-27T14:37:05.443Z",
+        "Items": []
+    },
+    {
+        "id": 7,
+        "destination": "Joni Hoki",
+        "estArrival": "1866-01-01T00:00:00.000Z",
+        "ShipperId": 2,
+        "ProfileId": 3,
+        "createdAt": "2023-09-27T14:36:01.917Z",
+        "updatedAt": "2023-09-27T14:36:01.917Z",
+        "Items": []
+    }
+]

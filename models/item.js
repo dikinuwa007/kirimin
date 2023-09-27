@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Item.belongsToMany(models.Shipping,{through:"ShippedItems",foreignKey:'ItemId'})//konsep many to many
+      Item.hasMany(models.ShippedItem,{
+        foreignKey:'ItemId'
+      })//kosep double one to many
     }
   }
   Item.init({

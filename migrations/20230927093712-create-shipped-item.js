@@ -9,11 +9,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      itemId: {
-        type: Sequelize.INTEGER
+      ItemId: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Items",
+          key:"id"
+        },
+        onUpdate:"cascade",
+        onDelete:"cascade"
       },
       ShippingId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Shippings",
+          key:"id"
+        },
+        onUpdate:"cascade",
+        onDelete:"cascade"
       },
       createdAt: {
         allowNull: false,

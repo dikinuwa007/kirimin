@@ -1,0 +1,26 @@
+[
+  {
+    "destination": "Joni Hoki",
+    "estArrival": "01/01/1864",
+    "ShipperId": 1,
+    "ProfileId": 3
+  },
+    {
+    "destination": "Rumah Hantu Hoki",
+    "estArrival": "01/01/1864",
+    "ShipperId": 1,
+    "ProfileId": 3
+  },
+{
+    "destination": "Joni Hoki",
+    "estArrival": "01/01/1866",
+    "ShipperId": 2,
+    "ProfileId": 3
+  },
+    {
+    "destination": "Rumah Hantu Hoki",
+    "estArrival": "01/01/1866",
+    "ShipperId": 2,
+    "ProfileId": 3
+  }
+]

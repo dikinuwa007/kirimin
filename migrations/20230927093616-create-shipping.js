@@ -15,11 +15,23 @@ module.exports = {
       estArrival: {
         type: Sequelize.DATE
       },
-      ShippedId: {
-        type: Sequelize.INTEGER
+      ShipperId: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Shippers",
+          key:"id"
+        },
+        onUpdate:"cascade",
+        onDelete:"cascade"
       },
       ProfileId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Profiles",
+          key:"id"
+        },
+        onUpdate:"cascade",
+        onDelete:"cascade"
       },
       createdAt: {
         allowNull: false,

@@ -10,13 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // define association hereip
+      // Shipping.belongsToMany(models.Item,{through:"ShippedItems",foreignKey:'ShpingId'})//konsep many to many
+      Shipping.hasMany(models.ShippedItem,{
+        foreignKey:'ShippingId'
+      })//konsep doubel to many
+      Shipping.belongsTo(models.Profile)
     }
   }
   Shipping.init({
     destination: DataTypes.STRING,
     estArrival: DataTypes.DATE,
-    ShippedId: DataTypes.INTEGER,
+    ShipperId: DataTypes.INTEGER,
     ProfileId: DataTypes.INTEGER
   }, {
     sequelize,

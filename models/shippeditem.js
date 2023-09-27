@@ -11,10 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      ShippedItem.belongsTo(models.Item,{
+        foreignKey:'ItemId'
+      })
+      ShippedItem.belongsTo(models.Shipping,{
+        foreignKey:'ShippingId'
+      })
     }
   }
   ShippedItem.init({
-    itemId: DataTypes.INTEGER,
+    ItemId: DataTypes.INTEGER,
     ShippingId: DataTypes.INTEGER
   }, {
     sequelize,
