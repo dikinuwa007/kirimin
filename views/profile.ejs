@@ -9,20 +9,24 @@
     <form action="/" method="post">
     <div>
         <label for="">User Name</label>
-        <input type="text" name="name" value="">
+        <input type="text" name="name" value="<%= dataProfile[0].name %>">
     </div>
     <div>
         <label for="">Email</label>
-        <input type="text" name="email" value="<%= dataProfile.email %>">
+        <input type="text" name="email" value="<%= dataProfile[0].User.email %>">
     </div>
     <div>
         <label for="">Address</label>
-        <input type="text" name="address"value="<%= dataProfile.useraddress %>">
+        <input type="text" name="address" value="<%= dataProfile[0].userAddress %>">
     </div>
     <div>
-        <input type="submit" value="ADD">
+        <input type="submit" value="UPDATE">
+    </div>
+    <div>
+        <input type="button" value="DELETE ACCOUNT" onclick="">
+        <button type="button" onclick="location.href='/user/ejs/delete'">Delete</button>
     </div>
     </form>
-    
+
 </body>
 </html>

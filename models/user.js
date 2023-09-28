@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     password: {
     type:DataTypes.STRING,
     allowNull:false,
+    unique:true,
     validate:{
       notNull:{
         msg:'password name required'  
@@ -61,7 +62,21 @@ module.exports = (sequelize, DataTypes) => {
         user.password = hash
       }
     },
-    sequelize,
+    sequelize,validate:{
+      lengthPassword(){
+        if(this.password.length<8){
+            throw new Error(`password must be 8 or greater`)
+        }
+        if(this.education==='S3'){
+          if(this.position==='Staff'){
+            throw new Error(`${this.education} hanya tersedia posisi Manager dan CEO`)
+          }
+          else if( this.position==='Supervisor'){
+            throw new Error(`${this.education} hanya tersedia posisi Manager dan CEO`)
+          }
+        }      
+      }
+    },
     modelName: 'User',
   });
   return User;
