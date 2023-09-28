@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/" method="post">
+    <form action="/user/<%= dataProfile[0].id %>/profile" method="post">
     <div>
         <label for="">User Name</label>
-        <input type="text" name="name" value="<%= dataProfile[0].name %>">
+        <input type="text" name="username" value="<%= dataProfile[0].User.username %>">
     </div>
     <div>
         <label for="">Email</label>
@@ -23,8 +23,8 @@
         <input type="submit" value="UPDATE">
     </div>
     <div>
-        <input type="button" value="DELETE ACCOUNT" onclick="">
-        <button type="button" onclick="location.href='/user/ejs/delete'">Delete</button>
+        <a href="/user/<%= dataProfile[0].id %>/delete">Delete</a>
+        <!-- <button type="button" onclick="location.href='/user/ejs/delete'">Delete</button> -->
     </div>
     </form>
 

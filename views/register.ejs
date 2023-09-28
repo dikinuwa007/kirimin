@@ -7,6 +7,12 @@
 </head>
 <body>
     <h1>Daftar</h1>
+    <% if (errors) {%>
+    <% errors=errors.split(',') %>
+    <% errors.forEach(element => { %>
+       <%= element %> <br>
+    <%}); %>
+    <% } %>
     <form action="/register" method="post">
     <div>
         <label for="">Email</label>

@@ -63,7 +63,7 @@ app.get('/user/:iduser/landingpage',UserController.userLandingPage)
 app.get('/user/:iduser/profile',isLoggedIn,UserController.getProfile)
 app.post('/user/:iduser/profile',isLoggedIn,UserController.postProfile)
 
-// app.get('/user/:iduser/delete',isLoggedIn,UserController.getDelete)
+app.get('/user/:iduser/delete',isLoggedIn,UserController.getDelete)
 
 app.get('/user/:iduser/shipping',UserController.getShipping)
 app.get('/user/:iduser/shipping/add',UserController.userAddShippingForm)
@@ -78,7 +78,7 @@ app.get('/superadmin/shipper/:idshipper/edit', UserController.superadminEditShip
 // app.get('/updateShipping/:idshipping', Controller.renderUpdateShipping);
 // app.post('/updateShipping/:idshipping', Controller.handlerUpdateShipping);
 
-app.get('/:id/logout', UserController.getLogout);
+app.get('/logout', UserController.getLogout);
 
 // app.get('/ships',(req,res)=>{
 // 		Shipping.findAll({

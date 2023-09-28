@@ -5,7 +5,8 @@ class UserController{
         res.render('landingpage')
     }
     static registerForm(req,res){
-        res.render('register')
+        let errors = req.query.err;
+        res.render('register',{errors})
     }
     static postRegister(req,res){
         const {email,username,password,role} = req.body
@@ -13,9 +14,15 @@ class UserController{
         .then(newUser=>{
             res.redirect('login')
         })
-        .catch(err=>{
-            res.send(err)
+            .catch((err)=>{
+            if(err.name=`SequelizeValidationError`){
+                const errors = err.errors.map(el=>el.message)
+                // res.send(errors)
+                res.redirect(`/register?err=${errors}`)
+            }
+            // res.send(err)
         })
+        
     }
     static loginForm(req,res){
         const {error} = req.query
@@ -84,17 +91,23 @@ class UserController{
     }
     static postProfile(req,res){
         const iduser=req.params.iduser
-        Profile.findOne({
-            where:{username}
+        const {username,email,address}=req.body
+        Profile.update({
+            userAddress:address
+        },{
+            where :{UserId:iduser}
         })
-        .then(dataProfile=>{
-            res.render('profile',dataProfile)
+        .then(()=>{
+        User.update({
+            username,email
+        },{
+            where :{id:iduser}
         })
+        })
+        res.redirect(`/user/${iduser}/profile`)
     }
 
     static getShipping(req,res){
-    // /user/:iduser/shipping
-        // const id = req.params.id
         const id = req.params.iduser
         Shipping.findAll({
 			include:{
@@ -159,6 +172,15 @@ class UserController{
         })
         .then(()=>{
             res.redirect('/')})
+    }
+    static getDelete(req,res){
+        const iduser = req.params.iduser
+        User.destroy({
+            where:{id:iduser}    
+        })
+        .then(()=>{
+            res.redirect('/logout')
+        })
     }
 }
 module.exports=UserController

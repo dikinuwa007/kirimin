@@ -67,16 +67,19 @@ module.exports = (sequelize, DataTypes) => {
       lengthPassword(){
         if(this.password.length<8){
             throw new Error(`password must be 8 or greater`)
-        }
-        if(this.education==='S3'){
-          if(this.position==='Staff'){
-            throw new Error(`${this.education} hanya tersedia posisi Manager dan CEO`)
-          }
-          else if( this.position==='Supervisor'){
-            throw new Error(`${this.education} hanya tersedia posisi Manager dan CEO`)
-          }
         }      
-      }
+      },
+      // emailUniq(){
+      //   User.findAll({
+      //     where:{email:this.email}
+      //   })
+      //   .then(data=>{
+      //     // console.log(data.length);
+      //     if(data.length>=0){
+      //       throw new Error(`Email Exists`)
+      //   }
+      //   })
+      // }
     },
     modelName: 'User',
   });
