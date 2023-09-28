@@ -5,7 +5,6 @@ const {Op} = require('sequelize')
 const easyinvoice = require('easyinvoice')
 const http = require('http');
 const fs = require('fs');
-// const easyinvoice = require('easyinvoice');
 class UserController{
     static landingPage(req,res){
         res.render('landingpage')
@@ -13,9 +12,7 @@ class UserController{
     static invoice(req,res){
         const easyinvoice = require('easyinvoice');
 const fs = require('fs');
-// Ship
-let id =req.params.idShipping
-Shipping.findOne({data})
+
 const invoiceData = {
   documentTitle: 'Invoice',
   currency: 'USD',
@@ -210,10 +207,10 @@ const invoiceData = {
 			model:ShippedItem,
 			include: Item
 			},where:{
-            ProfileId:idProfile
-        //     status:{
-        //         [Op.not]: true
-        // }
+            ProfileId:idProfile,
+            status:{
+                [Op.not]: true
+        }
         }
 		})
         // Shipping.getShippingsByStatus(status)

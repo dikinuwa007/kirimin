@@ -26,9 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       Shipping.belongsTo(models.Profile)
     }
     static getShippingsByStatus(status){
-      const option={
-      
-      }
+
       return Shipping.findAll({
 			include:{
 			model:ShippedItem,

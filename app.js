@@ -106,20 +106,20 @@ app.get('/logout', UserController.getLogout);
 // 			res.send(err)
 // 		})
 // 	}) manytomany
-app.get('/ships',(req,res)=>{
-		Shipping.findAll({
-			include:{
-			model:ShippedItem,
-			include: Item
-			}
-		})
-		.then(data=>{
-			res.send(data)
-		})
-		.catch(err=>{
-			res.send(err)
-		})
-	}) 
+// app.get('/ships',(req,res)=>{
+// 		Shipping.findAll({
+// 			include:{
+// 			model:ShippedItem,
+// 			include: Item
+// 			}
+// 		})
+// 		.then(data=>{
+// 			res.send(data)
+// 		})
+// 		.catch(err=>{
+// 			res.send(err)
+// 		})
+// 	}) 
 
 //middleware agar bisa digunakan di satu routing , Kalo global 
 
