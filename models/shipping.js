@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    get formattedRupiah(){
+    return new Intl.NumberFormat("id-ID",{
+        style:'currency',
+        currency:"IDR"
+    }).format(this.price)
+    }
     static associate(models) {
       // define association hereip
       // Shipping.belongsToMany(models.Item,{through:"ShippedItems",foreignKey:'ShpingId'})//konsep many to many
@@ -19,11 +25,28 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Shipping.init({
-    destination: DataTypes.STRING,
+    destination: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'destination required'  
+      },
+      notEmpty:{
+        msg:'destination required'
+      }
+    }
+    },
     estArrival: DataTypes.DATE,
     ShipperId: DataTypes.INTEGER,
     ProfileId: DataTypes.INTEGER
   }, {
+  hooks:{
+      beforeCreate:(shipping,options)=>{
+        shipping.estArrival = new Date(new Date().getTime()+(2*24*60*60*1000)) //2 days
+        shipping.status = 'Created'
+      }
+    },
     sequelize,
     modelName: 'Shipping',
   });

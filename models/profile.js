@@ -12,12 +12,23 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Profile.belongsTo(models.User,{foreignKey:'UserId'})//one to one
-      Profile.hasMany(models.Shipping)
+      Profile.hasMany(models.Shipping)//one to many
     }
   }
   Profile.init({
     name: DataTypes.STRING,
-    userAddress: DataTypes.STRING,
+    userAddress: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'address required'  
+      },
+      notEmpty:{
+        msg:'address required'
+      }
+    }
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,

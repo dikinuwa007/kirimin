@@ -14,7 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Shipper.init({
-    name: DataTypes.STRING
+    name: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'shipper name required'  
+      },
+      notEmpty:{
+        msg:'shipper required'
+      }
+    }
+    }
   }, {
     sequelize,
     modelName: 'Shipper',

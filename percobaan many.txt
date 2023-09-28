@@ -1,0 +1,3 @@
+many to many hanya bisa panggil A dan B
+double one to many itu lewat conjunction +conjunction bisa panggil A dan B
+super many to many +bisa menggunakan A,conjunction, B

@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require('bcryptjs')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -15,11 +16,51 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'user name required'  
+      },
+      notEmpty:{
+        msg:'user name required'
+      }
+    }
+    },
+    password: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'password name required'  
+      },
+      notEmpty:{
+        msg:'password name required'
+      }
+    }
+    },
     role: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'email required'  
+      },
+      notEmpty:{
+        msg:'email required'
+      }
+    }
+    }
   }, {
+    hooks:{
+      beforeCreate(user,option){
+        let salt = bcrypt.genSaltSync(8);//rounds semakin besar semakin secure,tapi memory semakin berat
+        let hash = bcrypt.hashSync(user.password,salt);
+        user.password = hash
+      }
+    },
     sequelize,
     modelName: 'User',
   });

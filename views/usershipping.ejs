@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=tab, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>destination</th>
+            <th>estArrival</th>
+            <th>createdAt</th>
+            <th>name</th>
+            <th>price</th>
+            <th>description</th>
+            <!-- <th>status</th> -->
+        </tr>
+        <% data.forEach(e => { %>
+        <tr>
+            <td><%= e.destination %></td>
+            <td><%= e.estArrival %></td>
+            <td><%= e.createdAt %></td>
+            <% e.ShippedItems.forEach(element => { %>
+            <td><%= element.Item.name %></td>
+            <td><%= element.Item.price %></td>
+            <td><%= element.Item.description %></td>
+            <% }) %>
+        </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

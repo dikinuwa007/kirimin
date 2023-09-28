@@ -18,9 +18,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Item.init({
-    name: DataTypes.STRING,
+    name: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'item name required'  
+      },
+      notEmpty:{
+        msg:'item name required'
+      }
+    }
+    },
     price: DataTypes.INTEGER,
-    description: DataTypes.STRING
+    description: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      notNull:{
+        msg:'description required'  
+      },
+      notEmpty:{
+        msg:'description required'
+      }
+    }
+    }
   }, {
     sequelize,
     modelName: 'Item',
