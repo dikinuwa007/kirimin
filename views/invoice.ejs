@@ -1,0 +1,23 @@
+<html>
+
+  <head>
+    <!-- Only include when rendering is required -->
+    <script src="https://unpkg.com/pdfjs-dist/build/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdfjs-dist/build/pdf.worker.min.js"></script>
+
+    <!-- Include pdfjs version 2.3.200 for Internet Explorer compatibility, no worker required -->
+    <!-- <script src="https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.min.js"></script> -->
+
+  </head>
+
+  <body>
+    <button onclick="createInvoice()">Create Invoice</button>
+    <button onclick="downloadInvoice()">Download Invoice</button>
+    <button onclick="renderInvoice()">Render Invoice</button>
+    <p>Invoice as base64 (click create invoice):
+      <small id="invoiceBase64"></small>
+    </p>
+    <div id="pdf"></div>
+  </body>
+
+</html>

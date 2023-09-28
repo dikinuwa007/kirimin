@@ -18,10 +18,8 @@ class UserController{
             .catch((err)=>{
             if(err.name=`SequelizeValidationError`){
                 const errors = err.errors.map(el=>el.message)
-                // res.send(errors)
                 res.redirect(`/register?err=${errors}`)
             }
-            // res.send(err)
         })
         
     }
@@ -47,18 +45,14 @@ class UserController{
                             where:{username}
                         })
                         .then((data)=>{
-                            console.log(data,'DATA PROFILEEEEE','LENGHT==',data.length);
                             Profile.findOne({
                             where:{UserId:req.session.userId}
                             })
                             .then((dataProfile)=>{
-                                // console.log(dataProfile,'DATA','LENGTH=',dataProfile[0]);
                             if(dataProfile){
-                              console.log("DATA BERHASIL");
                               return res.redirect(`/user/${req.session.userId}/profile`)
                             }
                             if(!dataProfile){
-                                console.log("MASUK DATA ERROR");
                               return res.redirect(`/user/${req.session.userId}/profile/add`)
                             }
                             })

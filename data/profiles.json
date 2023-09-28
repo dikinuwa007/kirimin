@@ -5,13 +5,8 @@
     "UserId": 1
   },
   {
-<<<<<<< HEAD
     "username": "fulan",
     "userAddress": "jl. Siliwingi",
-=======
-    "name": "Joni",
-    "userAddress": "jl. Gubeng",
->>>>>>> b54e31731488a6fca8a894d76cdff02fe08dea87
     "UserId": 2
   }
 ]
