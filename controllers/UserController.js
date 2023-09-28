@@ -1,10 +1,73 @@
 const{User,Shipping,Item,ShippedItem,Shipper,Profile} = require('../models')
 const {formatDate} = require('../helper')
 const bcrypt=require('bcryptjs')
+const {Op} = require('sequelize')
+const easyinvoice = require('easyinvoice')
+const http = require('http');
+const fs = require('fs');
+// const easyinvoice = require('easyinvoice');
 class UserController{
     static landingPage(req,res){
         res.render('landingpage')
     }
+    static invoice(req,res,callback){
+        const easyinvoice = require('easyinvoice');
+const fs = require('fs');
+
+const invoiceData = {
+  documentTitle: 'Invoice',
+  currency: 'USD',
+  taxNotation: 'vat', // or 'vat' for Value Added Tax
+  marginTop: 25,
+  marginRight: 25,
+  marginLeft: 25,
+  marginBottom: 25,
+  logo: 'https://example.com/logo.png', // URL or base64 encoded image
+  sender: {
+    company: 'Your Company',
+    address: '123 Main Street',
+    zip: '12345',
+    city: 'Your City',
+    country: 'Your Country',
+  },
+  client: {
+    company: 'Client Company',
+    address: '456 Client Street',
+    zip: '54321',
+    city: 'Client City',
+    country: 'Client Country',
+  },
+  invoiceNumber: 'INV-12345',
+  invoiceDate: '2023-09-28',
+  products: [
+    {
+      quantity: 2,
+      description: 'Product A',
+      tax: 6.25, // Tax rate in percent
+      price: 10,
+    },
+    {
+      quantity: 1,
+      description: 'Product B',
+      tax: 6.25,
+      price: 20,
+    },
+  ],
+  bottomNotice: 'Thank you for your business!',
+};
+
+ easyinvoice.createInvoice(invoiceData, (result) => {
+      const pdfBuffer = result.pdf;
+
+      // Set the appropriate headers for downloading the PDF
+      res.setHeader('Content-Disposition', 'attachment; filename="invoice.pdf"');
+      res.setHeader('Content-Type', 'application/pdf');
+      
+      // Send the PDF buffer as the response
+      res.end(pdfBuffer);
+    });
+    }
+
     static registerForm(req,res){
         let errors = req.query.err;
         res.render('register',{errors})
@@ -138,12 +201,20 @@ class UserController{
     static getShipping(req,res){
         // const id = req.session.userId
         const idProfile = req.session.profileId
+        const status = req.query.status
+
         Shipping.findAll({
 			include:{
 			model:ShippedItem,
 			include: Item
-			},where:{ProfileId:idProfile}
+			},where:{
+            ProfileId:idProfile
+        //     status:{
+        //         [Op.not]: true
+        // }
+        }
 		})
+        // Shipping.getShippingsByStatus(status)
 		.then(data=>{
         // res.send(data)
         res.render('usershipping',{data,idProfile,formatDate})

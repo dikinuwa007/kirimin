@@ -9,7 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    
+    get statusReceive(){
+    if(this.status===false){
+      return `Not Receive`
+    }
+    if(this.status===true){
+      return `Receive`
+    }
+    }
     static associate(models) {
       // define association hereip
       Shipping.belongsToMany(models.Item,{through:"ShippedItems",foreignKey:'ShpingId'})//konsep many to many
@@ -18,6 +25,36 @@ module.exports = (sequelize, DataTypes) => {
       })//konsep doubel to many
       Shipping.belongsTo(models.Profile)
     }
+    static getShippingsByStatus(status){
+      const option={
+      
+      }
+      return Shipping.findAll({
+			include:{
+			model:ShippedItem,
+			include: Item
+			},where:{
+            ProfileId:idProfile,
+            status:{
+                [Op.not]: status
+        }
+        }
+		})
+    }
+// static getEmployeesByPosition(position){
+//       const option={
+//         where:{},
+//         order:[
+//           ['createdAt','DESC']
+//         ]
+//       }
+//       if(position){
+//         option.where.position={
+//           [Op.iLike]:`%${position}%`
+//         }
+//       }
+//       return Employee.findAll(option)
+//     }
   }
   Shipping.init({
     destination: {

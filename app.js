@@ -70,6 +70,8 @@ app.post('/user/:iduser/profile',isLoggedIn,UserController.postProfile)
 
 app.get('/user/:iduser/shipping',isLoggedIn,UserController.getShipping)
 
+app.get('/user/:iduser/shipping/cetakInvoice/:idShipping',isLoggedIn,UserController.invoice)
+
 app.get('/user/:iduser/delete',isLoggedIn,UserController.getDelete)
 
 app.get('/user/:idprofile/shipping',UserController.getShipping)
@@ -77,7 +79,7 @@ app.get('/user/:idprofile/shipping',UserController.getShipping)
 app.get('/user/:idprofile/shipping/add',UserController.userAddShippingForm)
 app.post('/user/:idprofile/shipping/add',UserController.userAddShippingHandler)
 
-app.get('/user/:idprofile/shipping/add',InvoiceController.)
+// app.get('/user/:idprofile/shipping/add',InvoiceController.)
 
 app.get('/user/:iduser/shipping/receive',UserController.userReceive)
 // app.get('/shipping/:iduser', isLoggedIn,Controller.renderUserShipping); //dia ke isLoggedIn ,isSuperAdmin baru ke render jika sudah bener

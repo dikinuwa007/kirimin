@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/user/<%= idProfile %>/shipping?status=true">Receive</a>
+        <a href="/user/<%= idProfile %>/shipping?status=false">Not Receive</a>
     <!-- <a href="/user/:iduser/shipping/add">Add shipping</a> -->
     <a href="/user/<%= idProfile %>/shipping/add">Add Shipping</a>
     <table border="1">
@@ -17,6 +19,7 @@
             <!-- <th>price</th>
             <th>description</th> -->
             <th>status</th>
+            <th>invoice</th>
         </tr>
 
         <% data.forEach(e => { %>
@@ -33,7 +36,8 @@
             <!-- </tr> -->
             <% }) %>
             </td>
-            <td><%= e.status %></td>
+            <td><%= e.statusReceive %></td>
+            <td><a href="/user/<%= idProfile %>/shipping/cetakInvoice/<%= e.id %>">Cetak</a></td>
         </tr>
         <% }) %>
     </table>
