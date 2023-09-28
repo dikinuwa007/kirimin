@@ -13,21 +13,27 @@
             <th>destination</th>
             <th>estArrival</th>
             <th>createdAt</th>
-            <th>name</th>
-            <th>price</th>
-            <th>description</th>
-            <!-- <th>status</th> -->
+            <th>item</th>
+            <!-- <th>price</th>
+            <th>description</th> -->
+            <th>status</th>
         </tr>
+
         <% data.forEach(e => { %>
         <tr>
             <td><%= e.destination %></td>
             <td><%= formatDate(e.estArrival) %></td>
             <td><%= formatDate(e.createdAt) %></td>
+            <td>
             <% e.ShippedItems.forEach(element => { %>
-            <td><%= element.Item.name %></td> <br>
-            <td><%= element.Item.price %></td>
-            <td><%= element.Item.description %></td>
+            <!-- <tr> -->
+            <%= element.Item.name %>
+            <%= element.Item.price %>
+            <%= element.Item.description %>||
+            <!-- </tr> -->
             <% }) %>
+            </td>
+            <td><%= e.status %></td>
         </tr>
         <% }) %>
     </table>

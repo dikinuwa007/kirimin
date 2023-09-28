@@ -184,11 +184,18 @@ class UserController{
         const{destination,dataItem,dataShipper} = req.body
         Shipping.create({destination,ShipperId:dataShipper,ProfileId:idProfile})
         .then(()=>{
-            ShippedItem.create({ItemId:dataItem})
-            .then(()=>{
-            res.redirect(`/user/${idProfile}/shipping`)
+            return Shipping.findOne({
+                    where:{},
+                    order:[['createdAt','DESC']],
+                    })
+            // ShippedItem.create({ItemId:dataItem})
+            .then((data)=>{
+            let ShippingId = data.dataValues.id
+            return ShippedItem.create({ItemId:dataItem,ShippingId:ShippingId})
             })
+            .then(()=>{ res.redirect(`/user/${idProfile}/shipping`)})
         })
+        .catch((err)=>{res.send(err)})
     }
     static userReceive(req,res){
         const iduser=req.params.iduser

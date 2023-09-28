@@ -1,6 +1,7 @@
 npm ini -y
 npm install sequelize express pg ejs bcryptjs
 npm i express-session
+npm install easyinvoice --save
 npm i -D sequelize-cli
 npm sequelize init
 
