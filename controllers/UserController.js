@@ -10,10 +10,12 @@ class UserController{
     static landingPage(req,res){
         res.render('landingpage')
     }
-    static invoice(req,res,callback){
+    static invoice(req,res){
         const easyinvoice = require('easyinvoice');
 const fs = require('fs');
-
+// Ship
+let id =req.params.idShipping
+Shipping.findOne({data})
 const invoiceData = {
   documentTitle: 'Invoice',
   currency: 'USD',
@@ -24,11 +26,11 @@ const invoiceData = {
   marginBottom: 25,
   logo: 'https://example.com/logo.png', // URL or base64 encoded image
   sender: {
-    company: 'Your Company',
-    address: '123 Main Street',
-    zip: '12345',
-    city: 'Your City',
-    country: 'Your Country',
+    company: 'Kirimin',
+    address: '123 Ibu Kota',
+    zip: '17111',
+    city: 'Surabaya',
+    country: 'Indonesia',
   },
   client: {
     company: 'Client Company',
@@ -278,7 +280,9 @@ const invoiceData = {
     }
     static superadminEditShipperForm(req,res){
         const idshipper=req.params.idshipper
-        Shipper.findOne({})
+        Shipper.findOne({
+            where:{idshipper}
+        })
     }
     static superadminEditShipperHandler(req,res){
         const idshipper=req.params.idshipper
