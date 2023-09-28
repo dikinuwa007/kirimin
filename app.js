@@ -61,7 +61,13 @@ app.post('/login',UserController.postLogin)
 app.get('/user/:iduser/landingpage',UserController.userLandingPage)
 
 app.get('/user/:iduser/profile',isLoggedIn,UserController.getProfile)
+//jika profilenya gak ada
+app.get('/user/:iduser/profile/add',isLoggedIn,UserController.addProfileForm)
+app.post('/user/:iduser/profile/add',isLoggedIn,UserController.addProfileHandler)
+
 app.post('/user/:iduser/profile',isLoggedIn,UserController.postProfile)
+
+app.get('/user/:iduser/shipping',isLoggedIn,UserController.getShipping)
 
 app.get('/user/:iduser/delete',isLoggedIn,UserController.getDelete)
 

@@ -8,12 +8,8 @@
 <body>
     <form action="/user/<%= dataProfile[0].id %>/profile" method="post">
     <div>
-        <label for="">User Name</label>
-        <input type="text" name="username" value="<%= dataProfile[0].User.username %>">
-    </div>
-    <div>
-        <label for="">Email</label>
-        <input type="text" name="email" value="<%= dataProfile[0].User.email %>">
+        <label for="">Name</label>
+        <input type="text" name="name" value="<%= dataProfile[0].name %>">
     </div>
     <div>
         <label for="">Address</label>
@@ -24,6 +20,7 @@
     </div>
     <div>
         <a href="/user/<%= dataProfile[0].id %>/delete">Delete</a>
+        <a href="/logout">Logout</a>
         <!-- <button type="button" onclick="location.href='/user/ejs/delete'">Delete</button> -->
     </div>
     </form>

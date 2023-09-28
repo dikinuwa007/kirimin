@@ -1,8 +1,14 @@
 [
   {
-    "username": "Joni Hoki",
-    "password": "joni",
+    "username": "user",
+    "password": "user12345678",
     "role": "user",
     "email": "joni@gmail.com"
+  },
+    {
+    "username": "user123",
+    "password": "user12345678",
+    "role": "user",
+    "email": "user123@gmail.com"
   }
 ]

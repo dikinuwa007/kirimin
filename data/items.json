@@ -1,12 +1,12 @@
 [
   {
-    "name": "Joni Hoki",
+    "name": "Sepatu",
     "price": 10000,
     "description": "Barang User"
   },
 {
-    "name": "AK47",
+    "name": "Sendal",
     "price": 10000,
-    "description": "Senjata Rusia"
+    "description": "Barang Sendal"
   }
 ]

@@ -41,8 +41,28 @@ class UserController{
                     req.session.role=user.role
                     if(req.session.role==='superadmin'){
                         return res.redirect('/superadmin/landingpage')
-                    }else if(req.session.role==='user'){
-                        return res.redirect(`/user/${req.session.userId = user.id}/landingpage`)
+                    }else if(req.session.role === 'user'){
+                        User.findOne({
+                            where:{username}
+                        })
+                        .then((data)=>{
+                            console.log(data,'DATA PROFILEEEEE','LENGHT==',data.length);
+                            Profile.findOne({
+                            where:{UserId:req.session.userId}
+                            })
+                            .then((dataProfile)=>{
+                                // console.log(dataProfile,'DATA','LENGTH=',dataProfile[0]);
+                            if(dataProfile){
+                              console.log("DATA BERHASIL");
+                              return res.redirect(`/user/${req.session.userId}/profile`)
+                            }
+                            if(!dataProfile){
+                                console.log("MASUK DATA ERROR");
+                              return res.redirect(`/user/${req.session.userId}/profile/add`)
+                            }
+                            })
+                        })
+
                     }
                 }
                 else{
@@ -72,6 +92,22 @@ class UserController{
         const iduser = +req.params.iduser
         res.render('userlandingpage',{iduser})
     }
+    static addProfileForm(req,res){
+        const iduser = +req.session.userId
+        res.render('addprofile',{iduser}) 
+    }
+    static addProfileHandler(req,res){
+        const iduser = +req.session.userId
+        const {name,userAddress} = req.body
+        // res.send('addProfile',{iduser})
+        Profile.create({name,userAddress,UserId:iduser})
+        .then(()=>{
+           res.redirect(`/user/${iduser}/profile`) 
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
+    }
     static getProfile(req,res){
         const iduser = +req.session.userId
         Profile.findAll({
@@ -80,8 +116,6 @@ class UserController{
 			},where:{UserId:iduser}
 		})
         .then(dataProfile=>{
-            console.log(dataProfile);
-            //  res.send(dataProfile)
             res.render('profile',{dataProfile})
         })
         .catch(err=>{
@@ -90,25 +124,21 @@ class UserController{
         })
     }
     static postProfile(req,res){
-        const iduser=req.params.iduser
-        const {username,email,address}=req.body
+        const id = req.session.userId
+        // const iduser=req.params.iduser
+        const {name,address}=req.body
         Profile.update({
-            userAddress:address
+            name,userAddress:address
         },{
-            where :{UserId:iduser}
+            where :{UserId:id}
         })
         .then(()=>{
-        User.update({
-            username,email
-        },{
-            where :{id:iduser}
+            res.redirect(`/user/${id}/profile`)
         })
-        })
-        res.redirect(`/user/${iduser}/profile`)
     }
 
     static getShipping(req,res){
-        const id = req.params.iduser
+        const id = req.session.userId
         Shipping.findAll({
 			include:{
 			model:ShippedItem,
@@ -174,7 +204,7 @@ class UserController{
             res.redirect('/')})
     }
     static getDelete(req,res){
-        const iduser = req.params.iduser
+        const iduser = req.session.userId
         User.destroy({
             where:{id:iduser}    
         })

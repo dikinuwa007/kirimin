@@ -1,10 +1,10 @@
 [
   {
     "ItemId": 1,
-    "ShippingId": 5
+    "ShippingId": 1
   },
     {
     "ItemId": 2,
-    "ShippingId": 5
+    "ShippingId": 1
   }
 ]
