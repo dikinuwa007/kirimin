@@ -1,14 +1,14 @@
 [
   {
     "username": "user",
-    "password": "user12345678",
-    "role": "user",
-    "email": "joni@gmail.com"
+    "password": "hactiv123",
+    "role": "admin",
+    "email": "user@gmail.com"
   },
     {
-    "username": "user123",
-    "password": "user12345678",
+    "username": "fulan",
+    "password": "fulan123",
     "role": "user",
-    "email": "user123@gmail.com"
+    "email": "fulan@gmail.com"
   }
 ]

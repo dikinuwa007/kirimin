@@ -1,7 +1,12 @@
 [
   {
-    "name": "Joni Hoki",
+    "username": "user",
     "userAddress": "jl. Gubeng",
     "UserId": 1
+  },
+  {
+    "username": "fulan",
+    "userAddress": "jl. Siliwingi",
+    "UserId": 2
   }
 ]
