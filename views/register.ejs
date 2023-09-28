@@ -1,38 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <head>
+        <title>Kirimin Login</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+        <style>
+          html, body {
+          min-height: 100%;
+          }
+          body, div, form, input, select, p { 
+          padding: 0;
+          margin: 0;
+          outline: none;
+          font-family: Roboto, Arial, sans-serif;
+          font-size: 16px;
+          color: #eee;
+          }
+          body {
+          background: url("https://wallpapers.com/images/hd/white-color-background-ghw6e685ri75chj4.jpg") no-repeat center;
+          background-size: cover;
+          }
+          h1, h2 {
+          text-transform: uppercase;
+          font-weight: 400;
+          }
+          h2 {
+          margin: 0 0 0 8px;
+          }
+          .main-block {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 50%;
+          padding: 25px;
+          background: rgba(0, 0, 0, 0.5); 
+          }
+          .left-part, form {
+          padding: 25px;
+          }
+          .left-part {
+          text-align: center;
+          }
+          .fa-graduation-cap {
+          font-size: 72px;
+          }
+          form {
+          background: rgba(53, 50, 50, 0.7); 
+          }
+          .title {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+          }
+          .info {
+          display: flex;
+          flex-direction: column;
+          }
+          input, select {
+          padding: 5px;
+          margin-bottom: 30px;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid #eee;
+          }
+          input::placeholder {
+          color: #eee;
+          }
+          option:focus {
+          border: none;
+          }
+          option {
+          background: black; 
+          border: none;
+          }
+         
+          .btn-item, button {
+          padding: 10px 5px;
+          margin-top: 20px;
+          border-radius: 5px; 
+          border: none;
+          background: #2a2c2d; 
+          text-decoration: none;
+          font-size: 15px;
+          font-weight: 400;
+          color: #fff;
+          }
+          .btn-item {
+          display: inline-block;
+          margin: 20px 5px 0;
+          }
+          button {
+          width: 50%;
+          }
+          button:hover, .btn-item:hover {
+          background: #859394;
+          }
+          @media (min-width: 568px) {
+          html, body {
+          height: 100%;
+          }
+          .main-block {
+          flex-direction: row;
+          height: calc(100% - 50px);
+          }
+          }
+        </style>
+      </head>
 <body>
-    <h1>Daftar</h1>
-    <% if (errors) {%>
-    <% errors=errors.split(',') %>
-    <% errors.forEach(element => { %>
-       <%= element %> <br>
-    <%}); %>
-    <% } %>
-    <form action="/register" method="post">
-    <div>
-        <label for="">Email</label>
-        <input type="email" name="email" id="">
-    </div>
-    <div>
-        <label for="">Username</label>
-        <input type="text" name="username" id="">
-    </div>
-    <div>
-        <label for="">Password</label>
-        <input type="text" name="password" id="">
-    </div>
+    <div class="main block">
+        <form action="/register" method="post">
+            <div class="title">
+                <h1>Register</h1>
+            </div>
+            <% if (errors) {%>
+            <% errors=errors.split(',') %>
+            <% errors.forEach(element => { %>
+               <%= element %> <br>
+            <%}); %>
+            <% } %>
+        <div class="info">
+            <label for="">Email</label>
+            <input class="fname" type="email" name="email" id="">
+            <label for="">Username</label>
+            <input class="fname" type="text" name="username" id="">
+            <label for="">Password</label>
+            <input class="fname" type="text" name="password" id="">
+            <select name="role">
+                <option disabled>Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+              </select>
+        </div>
+        <div>
+            <button type="submit" >Register</button>
+        </div>
 
-    <div>
-        <label for="">Role</label>
-        <input type="text" name="role" id="">
-    </div>
-    <div>
-        <input type="submit" value="Submit">
     </div>
     </form>
 </body>

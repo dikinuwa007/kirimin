@@ -186,9 +186,9 @@ const invoiceData = {
     static postProfile(req,res){
         const id = req.session.userId
         // const iduser=req.params.iduser
-        const {name,address}=req.body
+        const {username,address}=req.body
         Profile.update({
-            name,userAddress:address
+            username,userAddress:address
         },{
             where :{UserId:id}
         })
@@ -202,16 +202,18 @@ const invoiceData = {
         const idProfile = req.session.profileId
         const status = req.query.status
 
+        const option = {where: {}}
+        if(status) {
+            option.where.status = status
+        }
+
         Shipping.findAll({
 			include:{
 			model:ShippedItem,
 			include: Item
 			},where:{
             ProfileId:idProfile,
-            status:{
-                [Op.not]: true
-        }
-        }
+        }, ...option
 		})
         // Shipping.getShippingsByStatus(status)
 		.then(data=>{

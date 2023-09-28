@@ -8,8 +8,8 @@
 <body>
     <form action="/user/<%= iduser %>/profile/add" method="post">
     <div>
-        <label for="">Nama</label>
-        <input type="text" name="name" required>
+        <label for="">Username</label>
+        <input type="text" name="username"  value="<%= User.username %>" required>
     </div>
     <div>
         <label for="">Address</label>
