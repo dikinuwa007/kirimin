@@ -2,12 +2,12 @@ const express = require('express');
 // const Controller = require('./controllers/controllers');
 const app = express();
 const PORT = 3000;
-const{Item,User,Shipping,Shipper,ShippedItem,Profile} = require('./models');
+const{Item,User,Shipping,Shipper,ShippedItem,Profile, sequelize} = require('./models');
 const session = require('express-session')
 const UserController = require('./controllers/UserController');
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
-
+sequelize.sync().then(()=>{
 //tegantung peletakkan middleware
 const isLoggedIn=function(req,res,next){
 	// console.log('CONTOH MIDDLEWARE GLOBAL');
@@ -71,9 +71,10 @@ app.get('/user/:iduser/shipping',isLoggedIn,UserController.getShipping)
 
 app.get('/user/:iduser/delete',isLoggedIn,UserController.getDelete)
 
-app.get('/user/:iduser/shipping',UserController.getShipping)
-app.get('/user/:iduser/shipping/add',UserController.userAddShippingForm)
-app.post('/user/:iduser/shipping/add',UserController.userAddShippingHandler)
+app.get('/user/:idprofile/shipping',UserController.getShipping)
+
+app.get('/user/:idprofile/shipping/add',UserController.userAddShippingForm)
+app.post('/user/:idprofile/shipping/add',UserController.userAddShippingHandler)
 app.get('/user/:iduser/shipping/receive',UserController.userReceive)
 // app.get('/shipping/:iduser', isLoggedIn,Controller.renderUserShipping); //dia ke isLoggedIn ,isSuperAdmin baru ke render jika sudah bener
 // app.get('/shipping/:id', UserController.getShipping);
@@ -125,3 +126,4 @@ app.listen(PORT, function (err) {
 	if (err) console.log(err);
 	console.log("Server listening on PORT", PORT);
 });
+})

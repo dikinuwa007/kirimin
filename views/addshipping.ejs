@@ -6,14 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/user/<%= iduser %>/shipping/add" method="post">
-        <div>
-            <label for="">origin</label>
-            <input type="text" name="origin" id="">
-        </div>
+    <form action="/user/<%= idProfile %>/shipping/add" method="post">
+        
         <div>
             <label for="">destination</label>
             <input type="text" name="destination" id="">
+        </div>
+        <div>
+            <label for="">Item</label>
+            <select name="dataItem" id="">
+                <% dataItem.forEach(e => { %>
+                    <option value="<%= e.id %>"><%= e.name %> - <%= e.formattedRupiah %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="">Shipper</label>
+            <select name="dataShipper" id="">
+                <% dataShipper.forEach(el => { %>
+                    <option value="<%= el.id %>"><%= el.name %></option>
+                <% }) %>
+            </select>
         </div>
         <div>
             <input type="submit" value="Add Shipping">
