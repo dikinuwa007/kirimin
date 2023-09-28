@@ -6,20 +6,20 @@
     "ProfileId": 1
   },
     {
-    "destination": "Rumah Hantu Hoki",
-    "estArrival": "01/01/1864",
+    "destination": "Bogor",
+    "estArrival": "03/02/1864",
     "ShipperId": 1,
     "ProfileId": 1
   },
 {
-    "destination": "Joni Hoki",
-    "estArrival": "01/01/1866",
+    "destination": "Jakarta",
+    "estArrival": "06/02/1866",
     "ShipperId": 2,
     "ProfileId": 1
   },
     {
-    "destination": "Rumah Hantu Hoki",
-    "estArrival": "01/01/1866",
+    "destination": "Bandung",
+    "estArrival": "09/03/1866",
     "ShipperId": 2,
     "ProfileId": 1
   }

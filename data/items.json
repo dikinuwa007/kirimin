@@ -1,12 +1,27 @@
 [
   {
-    "name": "Sepatu",
-    "price": 10000,
-    "description": "Barang User"
+    "name": "Phuma",
+    "price": 300000,
+    "description": "Sepatu"
   },
 {
-    "name": "Sendal",
-    "price": 10000,
-    "description": "Barang Sendal"
+    "name": "Swalow",
+    "price": 17000,
+    "description": " Sendal Jepit"
+  },
+  {
+    "name": "Upi jelly",
+    "price": 28000,
+    "description": "Permen"
+  },
+  {
+    "name": "Gelas Keramik",
+    "price": 17000,
+    "description": "Gelas Minum"
+  },
+  {
+    "name": "Piring Bagas",
+    "price": 60000,
+    "description": "Piring Bagas"
   }
 ]
