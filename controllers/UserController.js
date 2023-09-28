@@ -1,4 +1,5 @@
 const{User,Shipping,Item,ShippedItem,Shipper,Profile} = require('../models')
+const {formatDate} = require('../helper')
 const bcrypt=require('bcryptjs')
 class UserController{
     static landingPage(req,res){
@@ -116,7 +117,10 @@ class UserController{
 			},where:{UserId:iduser}
 		})
         .then(dataProfile=>{
-            res.render('profile',{dataProfile})
+            req.session.profileId = dataProfile[0].id
+            let idProfile = req.session.profileId
+            // console.log('PROFILE ID',req.session.profileId);
+            res.render('profile',{dataProfile,idProfile})
         })
         .catch(err=>{
             console.log(err);
@@ -138,15 +142,17 @@ class UserController{
     }
 
     static getShipping(req,res){
-        const id = req.session.userId
+        // const id = req.session.userId
+        const idProfile = req.session.profileId
         Shipping.findAll({
 			include:{
 			model:ShippedItem,
 			include: Item
-			},where:{ProfileId:id}
+			},where:{ProfileId:idProfile}
 		})
 		.then(data=>{
-            res.render('usershipping',{data})
+        // res.send(data)
+        res.render('usershipping',{data,idProfile,formatDate})
 		})
 		.catch(err=>{
             console.log(err);
@@ -163,15 +169,25 @@ class UserController{
         })
     }
     static userAddShippingForm(req,res){
-        const iduser=req.params.iduser
-        res.render('addshipping',iduser)
+        const idProfile=req.session.profileId
+        Shipper.findAll()
+        .then(dataShipper=>{
+            Item.findAll()
+            .then(dataItem=>{
+                res.render('addshipping',{idProfile,dataShipper,dataItem})
+            })
+        })
+        
     }
     static userAddShippingHandler(req,res){
-        const iduser=req.params.iduser
-        const{destination} = req.body
-        Shipping.create({destination,ProfileId:iduser})
+        const idProfile=req.session.profileId
+        const{destination,dataItem,dataShipper} = req.body
+        Shipping.create({destination,ShipperId:dataShipper,ProfileId:idProfile})
         .then(()=>{
-            res.redirect(`/user/${iduser}/shipping`)
+            ShippedItem.create({ItemId:dataItem})
+            .then(()=>{
+            res.redirect(`/user/${idProfile}/shipping`)
+            })
         })
     }
     static userReceive(req,res){

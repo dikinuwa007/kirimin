@@ -1,9 +1,4 @@
-const formatRupiah = (value) =>{
-    return new Intl.NumberFormat("id-ID",{
-        style:'currency',
-        currency:"IDR"
-    }).format(value)
-}
+
 const formatDate = (value) =>{
     const date = value;
       const yyyy = date.getFullYear();
@@ -12,4 +7,4 @@ const formatDate = (value) =>{
 
 		  return [ yyyy, mm < 10 ? `0${mm}` : mm, dd < 10 ? `0${dd}` : dd ].join('-')
 }
-module.exports = {formatRupiah,formatDate}
+module.exports = {formatDate}
